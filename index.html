@@ -35,7 +35,6 @@
       cursor: none;
     }
 
-    /* BACKGROUND — vignette radiale légère */
     body::before {
       content: '';
       position: fixed;
@@ -48,7 +47,6 @@
       z-index: 0;
     }
 
-    /* CURSOR */
     .cursor-dot {
       position: fixed; width: 6px; height: 6px;
       background: var(--accent); border-radius: 50%;
@@ -66,7 +64,6 @@
     body:has(a:hover) .cursor-dot  { width: 10px; height: 10px; }
     body:has(a:hover) .cursor-ring { width: 50px; height: 50px; border-color: rgba(26,92,58,.7); }
 
-    /* NAV */
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
       padding: 1.75rem 5vw;
@@ -88,13 +85,11 @@
     }
     .nav-links a:hover { color: var(--accent); }
 
-    /* HERO */
     #hero {
       min-height: 100vh; position: relative;
       display: flex; flex-direction: column; justify-content: center;
       padding: 10rem 5vw 6rem; overflow: hidden;
     }
-
     .hero-deco {
       position: absolute; right: -60px; top: 50%;
       transform: translateY(-50%);
@@ -112,7 +107,6 @@
       clip-path: inset(0 100% 0 0);
       animation: revealRight .9s cubic-bezier(.16,1,.3,1) .4s forwards;
     }
-
     h1.hero-name {
       font-family: var(--font-d); font-size: clamp(4rem,10.5vw,10rem);
       font-weight: 300; line-height: .9; letter-spacing: -.03em;
@@ -137,7 +131,6 @@
       max-width: 360px; line-height: 1.9;
     }
     .hero-desc strong { color: var(--text); font-weight: 600; }
-
     .hero-cta { display: flex; gap: .9rem; }
     .btn {
       padding: .8rem 2rem;
@@ -164,7 +157,6 @@
     }
     @keyframes growLine { to { transform: scaleX(1); } }
 
-    /* SECTIONS */
     .section-wrap {
       padding: 7rem 5vw;
       border-top: 1px solid var(--border);
@@ -183,7 +175,6 @@
       color: var(--muted); letter-spacing: .12em;
     }
 
-    /* PROJECTS */
     .project-item {
       display: grid; grid-template-columns: 3.5rem 1fr auto;
       gap: 2.5rem; align-items: start;
@@ -201,7 +192,6 @@
     .project-item:hover::before { opacity: 1; }
     .project-item:first-child { border-top: 1px solid var(--border); }
     .project-item.visible { opacity: 1; transform: none; }
-
     .project-num {
       font-family: var(--font-m); font-size: .62rem;
       color: var(--accent); letter-spacing: .1em;
@@ -238,7 +228,6 @@
     .project-link:hover { color: var(--accent); }
     .project-link:hover svg { transform: translate(3px,-3px); }
 
-    /* SKILLS */
     .skills-grid {
       display: grid; grid-template-columns: repeat(4,1fr); gap: 1.5rem;
     }
@@ -277,17 +266,6 @@
     .footer-inner {
       display: flex; align-items: center; justify-content: space-between; gap: 2rem;
     }
-    .footer-left {
-      display: flex; flex-direction: column; gap: .4rem;
-    }
-    .footer-logo {
-      font-family: var(--font-m); font-size: .95rem;
-      color: var(--accent); letter-spacing: .08em;
-    }
-    .footer-copy {
-      font-family: var(--font-m); font-size: .6rem;
-      color: var(--muted); letter-spacing: .08em;
-    }
     .footer-links {
       display: flex; gap: 2.5rem; align-items: center;
     }
@@ -299,25 +277,27 @@
     }
     .footer-link svg { width: 22px; height: 22px; flex-shrink: 0; }
     .footer-link:hover { color: var(--accent); }
-    .footer-status {
-      display: flex; align-items: center; gap: 8px;
-      font-family: var(--font-m); font-size: .62rem; color: var(--muted);
-    }
-    .status-dot {
-      width: 6px; height: 6px; border-radius: 50%; background: #4ade80;
-      animation: pulse 2s ease infinite;
-    }
-    @keyframes pulse { 0%,100% { opacity:1; } 50% { opacity:.3; } }
-    @media (max-width: 900px) {
-      .footer-inner { flex-direction: column; align-items: flex-start; gap: 1.5rem; }
-      .footer-links { flex-direction: column; gap: 1rem; }
-    }
-
-    /* FOOTER BUTTON RESET */
     button.footer-link {
       background: none; border: none; padding: 0;
       font-family: inherit; font-size: inherit; cursor: none;
     }
+
+    /* CV download button */
+    .footer-cv {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-family: var(--font-m); font-size: .7rem; font-weight: 500;
+      letter-spacing: .09em; text-transform: uppercase;
+      color: var(--accent); background: none; border: none;
+      cursor: none; padding: 0; position: relative;
+    }
+    .footer-cv::after {
+      content: ''; position: absolute; bottom: -2px; left: 0; right: 0;
+      height: 1px; background: var(--accent);
+      transform-origin: left; transition: transform .25s;
+    }
+    .footer-cv:hover::after { transform: scaleX(0.35); }
+    .footer-cv svg { width: 14px; height: 14px; transition: transform .2s; }
+    .footer-cv:hover svg { transform: translateY(2px); }
 
     /* TOAST */
     #toast {
@@ -330,18 +310,82 @@
       pointer-events: none; z-index: 9999;
     }
     #toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
-    @keyframes fadeIn   { from { opacity:0 } to { opacity:1 } }
+
+    /* ─── CV MODAL ─── */
+    #cv-modal {
+      position: fixed; inset: 0; z-index: 500;
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; pointer-events: none;
+      transition: opacity .3s ease;
+    }
+    #cv-modal.open { opacity: 1; pointer-events: all; }
+
+    #cv-backdrop {
+      position: absolute; inset: 0;
+      background: rgba(10,28,20,0.55);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+    }
+
+    #cv-panel {
+      position: relative; z-index: 1;
+      width: min(860px, 92vw);
+      height: min(92vh, 1100px);
+      background: var(--bg);
+      border: 1px solid var(--border-strong);
+      display: flex; flex-direction: column;
+      transform: translateY(24px) scale(.97);
+      transition: transform .35s cubic-bezier(.16,1,.3,1);
+    }
+    #cv-modal.open #cv-panel { transform: none; }
+
+    #cv-toolbar {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1rem 1.5rem;
+      border-bottom: 1px solid var(--border);
+      flex-shrink: 0;
+    }
+    #cv-label {
+      font-family: var(--font-m); font-size: .65rem;
+      color: var(--muted); letter-spacing: .1em; text-transform: uppercase;
+    }
+    #cv-actions { display: flex; align-items: center; gap: .75rem; }
+
+    .cv-btn-dl {
+      display: flex; align-items: center; gap: .5rem;
+      font-family: var(--font-m); font-size: .65rem; letter-spacing: .08em;
+      text-transform: uppercase; text-decoration: none;
+      color: var(--accent); border: 1px solid rgba(26,92,58,.35);
+      padding: .45rem 1rem;
+      transition: background .2s, color .2s;
+    }
+    .cv-btn-dl svg { width: 13px; height: 13px; }
+    .cv-btn-dl:hover { background: var(--accent); color: #eef0ec; border-color: var(--accent); }
+
+    #close-cv {
+      background: none; border: none; cursor: none;
+      color: var(--muted); padding: .3rem;
+      display: flex; align-items: center; justify-content: center;
+      transition: color .2s;
+    }
+    #close-cv svg { width: 18px; height: 18px; }
+    #close-cv:hover { color: var(--text); }
+
+    #cv-iframe {
+      flex: 1; width: 100%; border: none;
+    }
+
     @keyframes revealRight { from { clip-path: inset(0 100% 0 0) } to { clip-path: inset(0 0% 0 0) } }
     @keyframes revealUp    { from { clip-path: inset(0 0 100% 0) } to { clip-path: inset(0 0 0% 0) } }
 
-    /* RESPONSIVE */
     @media (max-width: 900px) {
       .hero-deco { display: none; }
       .hero-bottom { flex-direction: column; align-items: flex-start; gap: 2rem; }
       .project-item { grid-template-columns: 1fr; gap: 1rem; }
       .project-num { display: none; }
       .skills-grid { grid-template-columns: 1fr 1fr; }
-      .contact-grid { grid-template-columns: 1fr; }
+      .footer-inner { flex-direction: column; align-items: flex-start; gap: 1.5rem; }
+      .footer-links { flex-direction: column; gap: 1rem; }
     }
   </style>
 </head>
@@ -359,11 +403,8 @@
     </ul>
   </nav>
 
-  <!-- ─── HERO ─── -->
   <section id="hero">
     <div class="hero-label">Ingénieur en Systèmes Mécatroniques & Robotique</div>
-
-    <!-- Decorative engineering motif -->
     <svg class="hero-deco" viewBox="0 0 500 500" fill="none" xmlns="http://www.w3.org/2000/svg">
       <g class="deco-outer">
         <circle cx="250" cy="250" r="220" stroke="rgba(10,28,20,0.07)" stroke-width="1" stroke-dasharray="3 11"/>
@@ -373,30 +414,25 @@
         <circle cx="250" cy="250" r="145" stroke="rgba(26,92,58,0.12)" stroke-width="1" stroke-dasharray="2 7"/>
         <circle cx="250" cy="105" r="3.5" fill="rgba(26,92,58,0.9)"/>
       </g>
-      <!-- Crosshair -->
       <line x1="232" y1="250" x2="268" y2="250" stroke="rgba(10,28,20,0.12)" stroke-width="1"/>
       <line x1="250" y1="232" x2="250" y2="268" stroke="rgba(10,28,20,0.12)" stroke-width="1"/>
       <circle cx="250" cy="250" r="2.5" fill="rgba(26,92,58,0.5)"/>
-      <!-- Corner brackets -->
       <path d="M70 70 L70 105 M70 70 L105 70"   stroke="rgba(10,28,20,0.15)" stroke-width="1.5"/>
       <path d="M430 70 L430 105 M430 70 L395 70" stroke="rgba(10,28,20,0.15)" stroke-width="1.5"/>
       <path d="M70 430 L70 395 M70 430 L105 430"   stroke="rgba(10,28,20,0.15)" stroke-width="1.5"/>
       <path d="M430 430 L430 395 M430 430 L395 430" stroke="rgba(10,28,20,0.15)" stroke-width="1.5"/>
-      <!-- Tick marks on outer ring -->
       <line x1="250" y1="29" x2="250" y2="44"  stroke="rgba(10,28,20,0.12)" stroke-width="1"/>
       <line x1="250" y1="456" x2="250" y2="471" stroke="rgba(10,28,20,0.12)" stroke-width="1"/>
       <line x1="29" y1="250" x2="44" y2="250"  stroke="rgba(10,28,20,0.12)" stroke-width="1"/>
       <line x1="456" y1="250" x2="471" y2="250" stroke="rgba(10,28,20,0.12)" stroke-width="1"/>
     </svg>
-
     <h1 class="hero-name">
       <span class="name-line">Txomin</span>
       <span class="name-line">Bisbau</span>
     </h1>
-
     <div class="hero-bottom">
       <p class="hero-desc">
-        Je conçois et développe des systèmes robotiques, drones et technologies embarquées, du concept à l’expérimentation.
+        Je conçois et développe des systèmes robotiques, drones et technologies embarquées, du concept à l'expérimentation.
       </p>
       <div class="hero-cta">
         <a href="#projects" class="btn btn-primary">Voir les projets</a>
@@ -405,13 +441,11 @@
     </div>
   </section>
 
-  <!-- ─── PROJECTS ─── -->
   <section id="projects">
     <div class="section-wrap">
       <div class="section-header">
         <h2 class="section-title">Projets</h2>
       </div>
-
       <div class="project-item">
         <span class="project-num">01</span>
         <div class="project-body">
@@ -424,50 +458,39 @@
         </div>
         <a href="#" class="project-link">Voir<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 13L13 3M13 3H6M13 3V10"/></svg></a>
       </div>
-
       <div class="project-item">
         <span class="project-num">02</span>
         <div class="project-body">
           <div class="project-category">-----</div>
           <h3 class="project-title">-----</h3>
           <p class="project-desc">-----</p>
-          <div class="project-tags">
-            <span class="tag">---</span><span class="tag">---</span><span class="tag">---</span><span class="tag">---</span><span class="tag">---</span>
-          </div>
+          <div class="project-tags"><span class="tag">---</span><span class="tag">---</span><span class="tag">---</span></div>
         </div>
         <a href="#" class="project-link">Voir<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 13L13 3M13 3H6M13 3V10"/></svg></a>
       </div>
-
       <div class="project-item">
         <span class="project-num">03</span>
         <div class="project-body">
           <div class="project-category">-----</div>
           <h3 class="project-title">-----</h3>
           <p class="project-desc">-----</p>
-          <div class="project-tags">
-            <span class="tag">---</span><span class="tag">---</span><span class="tag">---</span><span class="tag">---</span><span class="tag">---</span>
-          </div>
+          <div class="project-tags"><span class="tag">---</span><span class="tag">---</span><span class="tag">---</span></div>
         </div>
         <a href="#" class="project-link">Voir<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 13L13 3M13 3H6M13 3V10"/></svg></a>
       </div>
-
       <div class="project-item">
         <span class="project-num">04</span>
         <div class="project-body">
           <div class="project-category">-----</div>
           <h3 class="project-title">-----</h3>
           <p class="project-desc">-----</p>
-          <div class="project-tags">
-            <span class="tag">---</span><span class="tag">---</span><span class="tag">---</span><span class="tag">---</span><span class="tag">---</span>
-          </div>
+          <div class="project-tags"><span class="tag">---</span><span class="tag">---</span><span class="tag">---</span></div>
         </div>
         <a href="#" class="project-link">Voir<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 13L13 3M13 3H6M13 3V10"/></svg></a>
       </div>
-
     </div>
   </section>
 
-  <!-- ─── SKILLS ─── -->
   <section id="skills">
     <div class="section-wrap">
       <div class="section-header">
@@ -518,19 +541,57 @@
           <svg viewBox="0 0 24 24" fill="currentColor">
             <path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14zM7.12 20.45H3.56V9h3.56v11.45z"/>
           </svg>
+          Txomin Bisbau
         </a>
       </div>
-      <div class="footer-status">
-        <span class="status-dot"></span>
-        <span>Disponible</span>
-      </div>
+      <!-- CV open modal -->
+      <button class="footer-cv" id="open-cv">
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+        Voir CV
+      </button>
     </div>
   </footer>
+
+  <!-- ─── CV MODAL ─── -->
+  <div id="cv-modal" role="dialog" aria-modal="true" aria-label="CV Txomin Bisbau">
+    <div id="cv-backdrop"></div>
+    <div id="cv-panel">
+      <div id="cv-toolbar">
+        <span id="cv-label">CV — Txomin Bisbau</span>
+        <div id="cv-actions">
+          <a href="CV_-_Txomin_BISBAU.pdf" download class="cv-btn cv-btn-dl">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 3v13M7 11l5 5 5-5"/><path d="M5 21h14"/>
+            </svg>
+            Télécharger
+          </a>
+          <button id="close-cv" aria-label="Fermer">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+              <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+      <iframe id="cv-iframe" src="CV_-_Txomin_BISBAU.pdf" title="CV Txomin Bisbau"></iframe>
+    </div>
+  </div>
 
   <div id="toast">Email copié ✓</div>
 
   <script>
-    // ── Copy email
+    // ── CV modal
+    const modal     = document.getElementById('cv-modal');
+    const openBtn   = document.getElementById('open-cv');
+    const closeBtn  = document.getElementById('close-cv');
+    const backdrop  = document.getElementById('cv-backdrop');
+    const openModal  = () => { modal.classList.add('open'); document.body.style.overflow = 'hidden'; };
+    const closeModal = () => { modal.classList.remove('open'); document.body.style.overflow = ''; };
+    openBtn.addEventListener('click', openModal);
+    closeBtn.addEventListener('click', closeModal);
+    backdrop.addEventListener('click', closeModal);
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+
     const copyBtn = document.getElementById('copy-email');
     const toast   = document.getElementById('toast');
     let toastTimer;
@@ -542,11 +603,9 @@
       });
     });
 
-    // ── Custom cursor
     const dot  = document.getElementById('cd');
     const ring = document.getElementById('cr');
     let mx = 0, my = 0, rx = 0, ry = 0;
-
     document.addEventListener('mousemove', e => {
       mx = e.clientX; my = e.clientY;
       dot.style.left = mx + 'px';
@@ -560,7 +619,6 @@
       requestAnimationFrame(animRing);
     })();
 
-    // ── Scroll reveal
     const obs = new IntersectionObserver(entries => {
       entries.forEach(e => {
         if (e.isIntersecting) {
@@ -570,7 +628,6 @@
         }
       });
     }, { threshold: 0.12 });
-
     document.querySelectorAll('.project-item').forEach((el, i) => { el.dataset.delay = i; obs.observe(el); });
     document.querySelectorAll('.skill-block').forEach((el, i)   => { el.dataset.delay = i; obs.observe(el); });
   </script>
