@@ -37,14 +37,12 @@
 
     body::before {
       content: '';
-      position: fixed;
-      inset: 0;
+      position: fixed; inset: 0;
       background:
         radial-gradient(ellipse 80% 60% at 15% 20%, rgba(26,92,58,0.07) 0%, transparent 60%),
         radial-gradient(ellipse 60% 50% at 85% 80%, rgba(26,92,58,0.06) 0%, transparent 55%),
         radial-gradient(ellipse 100% 80% at 50% 110%, rgba(10,28,20,0.08) 0%, transparent 60%);
-      pointer-events: none;
-      z-index: 0;
+      pointer-events: none; z-index: 0;
     }
 
     .cursor-dot {
@@ -69,118 +67,73 @@
       padding: 1.75rem 5vw;
       display: flex; align-items: center; justify-content: space-between;
       background: rgba(238,240,236,0.72);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
+      backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
       border-bottom: 1px solid rgba(10,28,20,0.07);
     }
-    .nav-logo {
-      font-family: var(--font-m); font-size: .78rem;
-      color: var(--text); text-decoration: none; letter-spacing: .06em;
-    }
+    .nav-logo { font-family: var(--font-m); font-size: .78rem; color: var(--text); text-decoration: none; letter-spacing: .06em; }
     .nav-links { display: flex; gap: 2.5rem; list-style: none; }
     .nav-links a {
       font-size: .72rem; font-weight: 700; letter-spacing: .1em;
-      text-transform: uppercase; color: var(--muted);
-      text-decoration: none; transition: color .2s;
+      text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color .2s;
     }
     .nav-links a:hover { color: var(--accent); }
 
+    /* ── HERO ── */
     #hero {
       min-height: 100vh;
       display: flex; align-items: center;
-      padding: 100px 3rem 4rem;
+      padding: 100px 5vw 4rem;
       border-bottom: 1px solid var(--border);
-    }
-    .hero-inner {
-      max-width: 1100px; margin: 0 auto; width: 100%;
-    }
-    .hero-tag {
-      font-family: var(--mono);
-      font-size: .75rem;
-      letter-spacing: .15em;
-      text-transform: uppercase;
-      color: var(--accent2);
-      margin-bottom: 1.5rem;
-    }
-    .hero-row {
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-      gap: 3rem;
-    }
-    .hero-left { flex: 1; }
-    .hero-name {
-      font-family: var(--mono);
-      font-size: clamp(2.4rem, 5vw, 4rem);
-      font-weight: 700;
-      line-height: 1.1;
-      letter-spacing: -.01em;
-      color: var(--text);
-      margin-bottom: 1.5rem;
-    }
-    .hero-desc {
-      font-size: 1.05rem;
-      color: var(--muted);
-      max-width: 480px;
-      line-height: 1.75;
-    }
-    .hero-photo-wrap {
-      flex-shrink: 0;
-      width: 200px;
-    }
-    .hero-photo {
-      width: 100%;
-      aspect-ratio: 4/5;
-      object-fit: cover;
-      object-position: top;
-      border-radius: 4px;
-      border: 1px solid var(--border);
-      filter: grayscale(20%);
-    }
-    
-    .btn {
-      padding: .8rem 2rem;
-      font-family: var(--font-b); font-size: .72rem; font-weight: 700;
-      letter-spacing: .1em; text-decoration: none; text-transform: uppercase;
-      transition: all .22s;
-    }
-    .btn-primary { background: var(--accent); color: #f4f1eb; }
-    .btn-primary:hover { background: var(--text); }
-    .btn-ghost { border: 1px solid var(--border-strong); color: var(--muted); }
-    .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
-
-    .scroll-ind {
-      position: absolute; bottom: 2.5rem; left: 5vw;
-      display: flex; align-items: center; gap: 1rem;
-      font-family: var(--font-m); font-size: .62rem;
-      color: var(--muted); letter-spacing: .12em; text-transform: uppercase;
-      opacity: 0; animation: fadeIn 1s ease 1.6s forwards;
-    }
-    .scroll-line {
-      width: 40px; height: 1px; background: var(--muted);
-      transform-origin: left; transform: scaleX(0);
-      animation: growLine 1s ease 2s forwards;
-    }
-    @keyframes growLine { to { transform: scaleX(1); } }
-
-    .section-wrap {
-      padding: 7rem 5vw;
-      border-top: 1px solid var(--border);
       position: relative; z-index: 1;
     }
-    .section-header {
-      display: flex; align-items: baseline; justify-content: space-between;
-      margin-bottom: 5rem;
+    .hero-inner { max-width: 1100px; margin: 0 auto; width: 100%; }
+    .hero-row {
+      display: flex; align-items: flex-start;
+      justify-content: space-between; gap: 4rem;
     }
-    .section-title {
-      font-family: var(--font-d); font-size: clamp(2rem,4.5vw,3.5rem);
-      font-weight: 300; letter-spacing: -.02em;
+    .hero-left { flex: 1; }
+
+    /* ① Nom en Fraunces — prénom en vert accent */
+    .hero-name {
+      font-family: var(--font-d);
+      font-size: clamp(3rem, 6vw, 5rem);
+      font-weight: 300;
+      line-height: 1.05;
+      letter-spacing: -.02em;
+      color: var(--text);
+      margin-bottom: .55rem;
     }
-    .section-index {
-      font-family: var(--font-m); font-size: .62rem;
-      color: var(--muted); letter-spacing: .12em;
+    .hero-name .first { color: var(--accent); }
+
+    /* ② Sous-titre juste sous le nom */
+    .hero-subtitle {
+      font-family: var(--font-m);
+      font-size: .7rem;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 2.2rem;
     }
 
+    .hero-desc { font-size: .95rem; color: var(--muted); max-width: 460px; line-height: 1.85; }
+
+    .hero-photo-wrap { flex-shrink: 0; width: 210px; margin-top: .5rem; }
+    .hero-photo {
+      width: 100%; aspect-ratio: 4/5;
+      object-fit: cover; object-position: top;
+      border-radius: 2px; border: 1px solid var(--border-strong);
+      filter: grayscale(15%);
+    }
+
+    /* ── SECTIONS ── */
+    .section-wrap {
+      padding: 7rem 5vw; border-top: 1px solid var(--border);
+      position: relative; z-index: 1;
+    }
+    .section-header { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 5rem; }
+    .section-title { font-family: var(--font-d); font-size: clamp(2rem,4.5vw,3.5rem); font-weight: 300; letter-spacing: -.02em; }
+
+    /* ── PROJETS ── */
     .project-item {
       display: grid; grid-template-columns: 3.5rem 1fr auto;
       gap: 2.5rem; align-items: start;
@@ -192,271 +145,159 @@
     .project-item::before {
       content: ''; position: absolute; inset: 0;
       background: var(--surface-hover); opacity: 0;
-      transition: opacity .25s;
-      margin: 0 -5vw;
+      transition: opacity .25s; margin: 0 -5vw;
     }
     .project-item:hover::before { opacity: 1; }
     .project-item:first-child { border-top: 1px solid var(--border); }
     .project-item.visible { opacity: 1; transform: none; }
-    .project-num {
-      font-family: var(--font-m); font-size: .62rem;
-      color: var(--accent); letter-spacing: .1em;
-      padding-top: 5px; position: relative; z-index: 1;
-    }
+    .project-num { font-family: var(--font-m); font-size: .62rem; color: var(--accent); letter-spacing: .1em; padding-top: 5px; position: relative; z-index: 1; }
     .project-body { position: relative; z-index: 1; }
-    .project-meta {
-      display: flex; align-items: center; gap: .6rem;
-      margin-bottom: .7rem; flex-wrap: wrap;
-    }
-    .project-category {
-      font-size: .66rem; font-weight: 700; letter-spacing: .16em;
-      text-transform: uppercase; color: var(--muted);
-    }
-    .project-sep {
-      font-size: .66rem; color: var(--border-strong); line-height: 1;
-    }
-    .project-period {
-      font-family: var(--font-m); font-size: .6rem;
-      color: var(--muted); letter-spacing: .08em;
-    }
-    .project-context {
-      font-size: .72rem; font-style: italic;
-      color: var(--accent); letter-spacing: .03em;
-    }
-    .project-title {
-      font-family: var(--font-d); font-size: clamp(1.1rem,2.5vw,1.65rem);
-      font-weight: 400; letter-spacing: -.015em; line-height: 1.2;
-      margin-bottom: .9rem;
-    }
-    .project-desc {
-      font-size: .83rem; color: var(--muted); line-height: 1.95;
-      max-width: 840px; margin-bottom: 1.25rem;
-    }
+    .project-meta { display: flex; align-items: center; gap: .6rem; margin-bottom: .7rem; flex-wrap: wrap; }
+    .project-category { font-size: .66rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--muted); }
+    .project-sep { font-size: .66rem; color: var(--border-strong); line-height: 1; }
+    .project-period { font-family: var(--font-m); font-size: .6rem; color: var(--muted); letter-spacing: .08em; }
+    .project-context { font-size: .72rem; font-style: italic; color: var(--accent); letter-spacing: .03em; }
+    .project-title { font-family: var(--font-d); font-size: clamp(1.1rem,2.5vw,1.65rem); font-weight: 400; letter-spacing: -.015em; line-height: 1.2; margin-bottom: .9rem; }
+    .project-desc { font-size: .83rem; color: var(--muted); line-height: 1.95; max-width: 840px; margin-bottom: 1.25rem; }
     .project-tags { display: flex; flex-wrap: wrap; gap: 6px; }
-    .tag {
-      font-family: var(--font-m); font-size: .6rem; color: var(--muted);
-      border: 1px solid var(--border-strong); padding: 3px 10px; letter-spacing: .04em;
-    }
+    .tag { font-family: var(--font-m); font-size: .6rem; color: var(--muted); border: 1px solid var(--border-strong); padding: 3px 10px; letter-spacing: .04em; }
     .project-link {
       position: relative; z-index: 1;
       display: flex; align-items: center; gap: 6px;
       font-size: .7rem; font-weight: 700; letter-spacing: .1em;
       text-transform: uppercase; color: var(--muted);
-      text-decoration: none; padding-top: 5px; white-space: nowrap;
-      transition: color .2s;
+      text-decoration: none; padding-top: 5px; white-space: nowrap; transition: color .2s;
     }
     .project-link svg { width: 14px; transition: transform .2s; }
     .project-link:hover { color: var(--accent); }
     .project-link:hover svg { transform: translate(3px,-3px); }
 
-    .hackathon-grid {
-      display: flex;
-      flex-direction: column;
-      gap: 0;
+    /* ── HACKATHONS ③ ── */
+    #hackathons {
+      padding: 5rem 5vw;
+      border-top: 1px solid var(--border);
+      position: relative; z-index: 1;
     }
-    .hackathon-item {
-      display: grid;
-      grid-template-columns: 80px 1fr;
-      gap: 2rem;
-      padding: 2rem 0;
-      border-bottom: 1px solid var(--border);
+    /* En-tête : eyebrow + titre plus petit que les autres sections */
+    .hackathon-header {
+      display: flex; align-items: baseline; gap: 1.4rem;
+      margin-bottom: 4rem;
     }
-    .hackathon-item:first-child { border-top: 1px solid var(--border); }
-    .hackathon-num {
-      font-family: var(--mono);
-      font-size: .75rem;
-      color: var(--muted);
-      padding-top: .3rem;
+    .hackathon-eyebrow {
+      font-family: var(--font-m); font-size: .62rem;
+      color: var(--accent); letter-spacing: .18em; text-transform: uppercase;
+      white-space: nowrap;
     }
-    .hackathon-meta {
-      font-family: var(--mono);
-      font-size: .7rem;
-      color: var(--accent2);
-      letter-spacing: .08em;
-      margin-bottom: .5rem;
-    }
-    .hackathon-title {
-      font-size: 1rem;
-      font-weight: 500;
-      color: var(--text);
-      margin-bottom: .6rem;
-    }
-    .hackathon-desc {
-      font-size: .88rem;
-      color: var(--muted);
-      line-height: 1.7;
-    }
-    .hackathon-badge {
-      display: inline-block;
-      margin-top: .8rem;
-      font-family: var(--mono);
-      font-size: .68rem;
-      letter-spacing: .1em;
-      text-transform: uppercase;
-      color: var(--accent);
-      border: 1px solid var(--accent);
-      padding: .2rem .6rem;
-      border-radius: 2px;
+    .hackathon-section-title {
+      font-family: var(--font-d);
+      font-size: clamp(1.4rem, 2.8vw, 2.2rem); /* bien plus petit que 3.5rem */
+      font-weight: 300; font-style: italic;
+      letter-spacing: -.02em; color: var(--text);
     }
 
-    .skills-grid {
-      display: grid; grid-template-columns: repeat(4,1fr); gap: 1.5rem;
+    .hackathon-grid { display: flex; flex-direction: column; }
+    .hackathon-item {
+      display: grid; grid-template-columns: 3.5rem 1fr;
+      gap: 2.5rem; align-items: start;
+      padding: 2.5rem 0; border-bottom: 1px solid var(--border);
     }
+    .hackathon-item:first-child { border-top: 1px solid var(--border); }
+    .hackathon-num { font-family: var(--font-m); font-size: .62rem; color: var(--accent); letter-spacing: .1em; padding-top: 4px; }
+
+    /* Titre du hackathon */
+    .hackathon-title { font-family: var(--font-d); font-size: clamp(1rem, 2vw, 1.35rem); font-weight: 400; letter-spacing: -.01em; line-height: 1.2; margin-bottom: 1rem; }
+
+    /* ⑤ Bloc "Contexte" = présentation du hackathon */
+    .hackathon-context {
+      background: var(--surface);
+      border-left: 2px solid var(--accent);
+      padding: .9rem 1.2rem;
+      margin-bottom: 1rem;
+    }
+    .hackathon-context-label {
+      font-family: var(--font-m); font-size: .58rem;
+      letter-spacing: .14em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: .45rem;
+    }
+    .hackathon-context-meta {
+      font-family: var(--font-m); font-size: .6rem;
+      color: var(--muted); letter-spacing: .06em; margin-bottom: .55rem;
+    }
+    .hackathon-context p { font-size: .81rem; color: var(--muted); line-height: 1.85; }
+
+    /* ⑤ Bloc "Travail réalisé" */
+    .hackathon-work { margin-top: .2rem; }
+    .hackathon-work-label {
+      font-family: var(--font-m); font-size: .58rem;
+      letter-spacing: .14em; text-transform: uppercase;
+      color: var(--muted); margin-bottom: .5rem;
+    }
+    .hackathon-work p { font-size: .83rem; color: var(--text); line-height: 1.9; }
+
+    /* ── COMPÉTENCES ④ ── */
+    .skills-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 1.5rem; }
     .skill-block {
       background: var(--surface); padding: 2.5rem 2rem;
       border: 1px solid var(--border);
+      display: flex; flex-direction: column; /* ④ */
       opacity: 0; transform: translateY(20px);
       transition: opacity .65s ease, transform .65s ease;
     }
     .skill-block.visible { opacity: 1; transform: none; }
-    .skill-idx {
-      font-family: var(--font-m); font-size: .6rem;
-      color: var(--accent); letter-spacing: .14em; margin-bottom: 1.5rem;
-    }
-    .skill-name {
-      font-family: var(--font-d); font-size: 1.3rem; font-weight: 400;
-      margin-bottom: .5rem; line-height: 1.2;
-    }
-    .skill-bar-wrap {
-      height: 1px; background: var(--border-strong);
-      margin-bottom: 1.5rem; overflow: hidden;
-    }
-    .skill-bar {
-      height: 100%; background: var(--accent); width: 0;
-      transition: width 1.3s cubic-bezier(.16,1,.3,1);
-    }
+    .skill-idx { font-family: var(--font-m); font-size: .6rem; color: var(--accent); letter-spacing: .14em; margin-bottom: 1.5rem; }
+    .skill-name { font-family: var(--font-d); font-size: 1.3rem; font-weight: 400; margin-bottom: .5rem; line-height: 1.2; }
+    .skill-bar-wrap { height: 1px; background: var(--border-strong); margin-bottom: 1.5rem; overflow: hidden; }
+    .skill-bar { height: 100%; background: var(--accent); width: 0; transition: width 1.3s cubic-bezier(.16,1,.3,1); }
     .skill-block.visible .skill-bar { width: var(--pct); }
-    .skill-list { font-size: .8rem; color: var(--muted); line-height: 2.1; }
+    .skill-list { font-size: .8rem; color: var(--muted); line-height: 2.1; flex: 1; /* ④ pousse les tags en bas */ }
+    /* ④ Tags collés en bas, alignés sur la même ligne de base */
+    .skill-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 1.4rem; align-items: flex-start; }
 
-    /* FOOTER */
-    footer {
-      padding: 2.5rem 5vw;
-      border-top: 1px solid var(--border);
-      position: relative; z-index: 1;
-    }
-    .footer-inner {
-      display: flex; align-items: center; justify-content: space-between; gap: 2rem;
-    }
-    .footer-links {
-      display: flex; gap: 2.5rem; align-items: center;
-    }
-    .footer-link {
-      display: flex; align-items: center; gap: .55rem;
-      font-family: var(--font-m); font-size: .7rem; letter-spacing: .04em;
-      color: var(--muted); text-decoration: none;
-      transition: color .2s;
-    }
+    /* ── FOOTER ── */
+    footer { padding: 2.5rem 5vw; border-top: 1px solid var(--border); position: relative; z-index: 1; }
+    .footer-inner { display: flex; align-items: center; justify-content: space-between; gap: 2rem; }
+    .footer-links { display: flex; gap: 2.5rem; align-items: center; }
+    .footer-link { display: flex; align-items: center; gap: .55rem; font-family: var(--font-m); font-size: .7rem; letter-spacing: .04em; color: var(--muted); text-decoration: none; transition: color .2s; }
     .footer-link svg { width: 22px; height: 22px; flex-shrink: 0; }
     .footer-link:hover { color: var(--accent); }
-    button.footer-link {
-      background: none; border: none; padding: 0;
-      font-family: inherit; font-size: inherit; cursor: none;
-    }
-
-    /* CV download button */
-    .footer-cv {
-      display: inline-flex; align-items: center; gap: 8px;
-      font-family: var(--font-m); font-size: .7rem; font-weight: 500;
-      letter-spacing: .09em; text-transform: uppercase;
-      color: var(--accent); background: none; border: none;
-      cursor: none; padding: 0; position: relative;
-    }
-    .footer-cv::after {
-      content: ''; position: absolute; bottom: -2px; left: 0; right: 0;
-      height: 1px; background: var(--accent);
-      transform-origin: left; transition: transform .25s;
-    }
+    button.footer-link { background: none; border: none; padding: 0; font-family: inherit; font-size: inherit; cursor: none; }
+    .footer-cv { display: inline-flex; align-items: center; gap: 8px; font-family: var(--font-m); font-size: .7rem; font-weight: 500; letter-spacing: .09em; text-transform: uppercase; color: var(--accent); background: none; border: none; cursor: none; padding: 0; position: relative; }
+    .footer-cv::after { content: ''; position: absolute; bottom: -2px; left: 0; right: 0; height: 1px; background: var(--accent); transform-origin: left; transition: transform .25s; }
     .footer-cv:hover::after { transform: scaleX(0.35); }
     .footer-cv svg { width: 14px; height: 14px; transition: transform .2s; }
     .footer-cv:hover svg { transform: translateY(2px); }
 
-    /* TOAST */
-    #toast {
-      position: fixed; bottom: 2rem; left: 50%;
-      transform: translateX(-50%) translateY(16px);
-      background: var(--accent); color: #eef0ec;
-      font-family: var(--font-m); font-size: .68rem; letter-spacing: .08em;
-      padding: .65rem 1.5rem; opacity: 0;
-      transition: opacity .3s, transform .3s;
-      pointer-events: none; z-index: 9999;
-    }
+    /* ── TOAST ── */
+    #toast { position: fixed; bottom: 2rem; left: 50%; transform: translateX(-50%) translateY(16px); background: var(--accent); color: #eef0ec; font-family: var(--font-m); font-size: .68rem; letter-spacing: .08em; padding: .65rem 1.5rem; opacity: 0; transition: opacity .3s, transform .3s; pointer-events: none; z-index: 9999; }
     #toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
 
-    /* ─── CV MODAL ─── */
-    #cv-modal {
-      position: fixed; inset: 0; z-index: 500;
-      display: flex; align-items: center; justify-content: center;
-      opacity: 0; pointer-events: none;
-      transition: opacity .3s ease;
-    }
+    /* ── CV MODAL ── */
+    #cv-modal { position: fixed; inset: 0; z-index: 500; display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity .3s ease; }
     #cv-modal.open { opacity: 1; pointer-events: all; }
-
-    #cv-backdrop {
-      position: absolute; inset: 0;
-      background: rgba(10,28,20,0.55);
-      backdrop-filter: blur(6px);
-      -webkit-backdrop-filter: blur(6px);
-    }
-
-    #cv-panel {
-      position: relative; z-index: 1;
-      width: min(860px, 92vw);
-      height: min(92vh, 1100px);
-      background: var(--bg);
-      border: 1px solid var(--border-strong);
-      display: flex; flex-direction: column;
-      transform: translateY(24px) scale(.97);
-      transition: transform .35s cubic-bezier(.16,1,.3,1);
-    }
+    #cv-backdrop { position: absolute; inset: 0; background: rgba(10,28,20,0.55); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); }
+    #cv-panel { position: relative; z-index: 1; width: min(860px, 92vw); height: min(92vh, 1100px); background: var(--bg); border: 1px solid var(--border-strong); display: flex; flex-direction: column; transform: translateY(24px) scale(.97); transition: transform .35s cubic-bezier(.16,1,.3,1); }
     #cv-modal.open #cv-panel { transform: none; }
-
-    #cv-toolbar {
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 1rem 1.5rem;
-      border-bottom: 1px solid var(--border);
-      flex-shrink: 0;
-    }
-    #cv-label {
-      font-family: var(--font-m); font-size: .65rem;
-      color: var(--muted); letter-spacing: .1em; text-transform: uppercase;
-    }
+    #cv-toolbar { display: flex; align-items: center; justify-content: space-between; padding: 1rem 1.5rem; border-bottom: 1px solid var(--border); flex-shrink: 0; }
+    #cv-label { font-family: var(--font-m); font-size: .65rem; color: var(--muted); letter-spacing: .1em; text-transform: uppercase; }
     #cv-actions { display: flex; align-items: center; gap: .75rem; }
-
-    .cv-btn-dl {
-      display: flex; align-items: center; gap: .5rem;
-      font-family: var(--font-m); font-size: .65rem; letter-spacing: .08em;
-      text-transform: uppercase; text-decoration: none;
-      color: var(--accent); border: 1px solid rgba(26,92,58,.35);
-      padding: .45rem 1rem;
-      transition: background .2s, color .2s;
-    }
+    .cv-btn-dl { display: flex; align-items: center; gap: .5rem; font-family: var(--font-m); font-size: .65rem; letter-spacing: .08em; text-transform: uppercase; text-decoration: none; color: var(--accent); border: 1px solid rgba(26,92,58,.35); padding: .45rem 1rem; transition: background .2s, color .2s; }
     .cv-btn-dl svg { width: 13px; height: 13px; }
     .cv-btn-dl:hover { background: var(--accent); color: #eef0ec; border-color: var(--accent); }
-
-    #close-cv {
-      background: none; border: none; cursor: none;
-      color: var(--muted); padding: .3rem;
-      display: flex; align-items: center; justify-content: center;
-      transition: color .2s;
-    }
+    #close-cv { background: none; border: none; cursor: none; color: var(--muted); padding: .3rem; display: flex; align-items: center; justify-content: center; transition: color .2s; }
     #close-cv svg { width: 18px; height: 18px; }
     #close-cv:hover { color: var(--text); }
-
-    #cv-iframe {
-      flex: 1; width: 100%; border: none;
-    }
-
-    @keyframes revealRight { from { clip-path: inset(0 100% 0 0) } to { clip-path: inset(0 0% 0 0) } }
-    @keyframes revealUp    { from { clip-path: inset(0 0 100% 0) } to { clip-path: inset(0 0 0% 0) } }
+    #cv-iframe { flex: 1; width: 100%; border: none; }
 
     @media (max-width: 900px) {
-      .hero-deco { display: none; }
-      .hero-bottom { flex-direction: column; align-items: flex-start; gap: 2rem; }
+      .hero-row { flex-direction: column-reverse; gap: 2rem; }
+      .hero-photo-wrap { width: 140px; }
       .project-item { grid-template-columns: 1fr; gap: 1rem; }
       .project-num { display: none; }
       .skills-grid { grid-template-columns: 1fr 1fr; }
       .footer-inner { flex-direction: column; align-items: flex-start; gap: 1.5rem; }
       .footer-links { flex-direction: column; gap: 1rem; }
+      .hackathon-item { grid-template-columns: 1fr; }
+      .hackathon-num { display: none; }
     }
   </style>
 </head>
@@ -475,236 +316,236 @@
     </ul>
   </nav>
 
-  
-<div id="hero">
-  <div class="hero-inner">
-    <p class="hero-tag">Ingénieur en Systèmes Mécatroniques &amp; Robotiques</p>
-    <div class="hero-row">
-      <div class="hero-left">
-        <h1 class="hero-name">Txomin Bisbau</h1>
-        <p class="hero-desc">Je conçois et développe des systèmes robotiques, drones et technologies embarquées, du concept à l'expérimentation.</p>
-      </div>
-      <div class="hero-photo-wrap">
-        <img class="hero-photo" src="profil.jpg" alt="Txomin Bisbau">
+  <!-- ── HERO ── -->
+  <div id="hero">
+    <div class="hero-inner">
+      <div class="hero-row">
+        <div class="hero-left">
+          <!-- ① Nom en Fraunces, prénom en vert -->
+          <h1 class="hero-name"><span class="first">Txomin</span> Bisbau</h1>
+          <!-- ② Sous-titre juste après le nom -->
+          <p class="hero-subtitle">Ingénieur en Systèmes Mécatroniques &amp; Robotiques</p>
+          <p class="hero-desc">Je conçois et développe des systèmes robotiques, drones et technologies embarquées, du concept à l'expérimentation.</p>
+        </div>
+        <div class="hero-photo-wrap">
+          <img class="hero-photo" src="profil.jpg" alt="Txomin Bisbau">
+        </div>
       </div>
     </div>
   </div>
-</div>
 
+  <!-- ── PROJETS ── -->
   <section id="projects">
     <div class="section-wrap">
-      <div class="section-header">
-        <h2 class="section-title">Projets</h2>
-      </div>
+      <div class="section-header"><h2 class="section-title">Projets</h2></div>
+
       <div class="project-item">
         <span class="project-num">01</span>
         <div class="project-body">
-          <div class="project-meta">
-            <span class="project-category">---</span>
-            <span class="project-sep">—</span>
-            <span class="project-period">2023</span>
-            <span class="project-sep">|</span>
-            <span class="project-context">Scolaire</span>
-          </div>
+          <div class="project-meta"><span class="project-category">---</span><span class="project-sep">—</span><span class="project-period">2023</span><span class="project-sep">|</span><span class="project-context">Scolaire</span></div>
           <h3 class="project-title">Étude expérimentale du bruit de roulement des véhicules</h3>
-          <p class="project-desc">Projet de TIPE en CPGE MP consacré à l’analyse du bruit généré par le contact pneu-chaussée à travers des mesures expérimentales et une analyse fréquentielle. <br>
-            Ce projet a pour objectif d'étudier l’impact de la vitesse, du type de revêtement et des phénomènes physiques impliqués afin d'explorer des pistes de réduction de la pollution sonore.</p>
+          <p class="project-desc">Projet de TIPE en CPGE MP consacré à l'analyse du bruit généré par le contact pneu-chaussée à travers des mesures expérimentales et une analyse fréquentielle.<br>Ce projet a pour objectif d'étudier l'impact de la vitesse, du type de revêtement et des phénomènes physiques impliqués afin d'explorer des pistes de réduction de la pollution sonore.</p>
           <div class="project-tags"><span class="tag">---</span><span class="tag">---</span><span class="tag">---</span></div>
         </div>
         <a href="#" class="project-link">Voir<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 13L13 3M13 3H6M13 3V10"/></svg></a>
       </div>
+
       <div class="project-item">
         <span class="project-num">02</span>
         <div class="project-body">
-          <div class="project-meta">
-            <span class="project-category">---</span>
-            <span class="project-sep">—</span>
-            <span class="project-period">2024</span>
-            <span class="project-sep">|</span>
-            <span class="project-context">Scolaire</span>
-          </div>
-          <h3 class="project-title">Conception d’un safran pour trimaran autonome pour le projet Zéphyr</h3>
-          <p class="project-desc">Projet de fin de première année d’école d’ingénieur réalisé en équipe de 7 pour <a href="https://hydrosharks.github.io/website/">HydroSharks</a> autour du trimaran autonome Zéphyr.<br>
-          Étude des efforts hydrodynamiques appliqués au safran, dimensionnement d’un système de gouverne et conception mécanique associée. <br>
-            Contribution personnelle centrée sur la modélisation de la coque sur DELFTship pour l’analyse des efforts et la conception CAO du système sur CATIA V5.</p>
+          <div class="project-meta"><span class="project-category">---</span><span class="project-sep">—</span><span class="project-period">2024</span><span class="project-sep">|</span><span class="project-context">Scolaire</span></div>
+          <h3 class="project-title">Conception d'un safran pour trimaran autonome pour le projet Zéphyr</h3>
+          <p class="project-desc">Projet de fin de première année d'école d'ingénieur réalisé en équipe de 7 pour <a href="https://hydrosharks.github.io/website/">HydroSharks</a> autour du trimaran autonome Zéphyr.<br>Étude des efforts hydrodynamiques appliqués au safran, dimensionnement d'un système de gouverne et conception mécanique associée.<br>Contribution personnelle centrée sur la modélisation de la coque sur DELFTship pour l'analyse des efforts et la conception CAO du système sur CATIA V5.</p>
           <div class="project-tags"><span class="tag">---</span><span class="tag">---</span><span class="tag">---</span></div>
         </div>
         <a href="#" class="project-link">Voir<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 13L13 3M13 3H6M13 3V10"/></svg></a>
       </div>
+
       <div class="project-item">
         <span class="project-num">03</span>
         <div class="project-body">
-          <div class="project-meta">
-            <span class="project-category">---</span>
-            <span class="project-sep">—</span>
-            <span class="project-period">2024-2026</span>
-            <span class="project-sep">|</span>
-            <span class="project-context">Association</span>
-          </div>
+          <div class="project-meta"><span class="project-category">---</span><span class="project-sep">—</span><span class="project-period">2024-2026</span><span class="project-sep">|</span><span class="project-context">Association</span></div>
           <h3 class="project-title">Conception d'un UAV VTOL Tricoptère Tilt-Rotor dans le cadre du Dassault UAV Challenge</h3>
-          <p class="project-desc">Conception et fabrication d’un drone à décollage vertical pour participé au <a href="https://www.dassault-aviation.tv/en/careers/2244/Dassault_UAV_Challenge_2024__5_SeaTech.html">Dassault UAV Challenge</a> avec l'association AeroTech.
-            Un projet associatif complet combinant aérodynamique et systèmes embarqués. Gestion globale du projet en tant que président d’AeroTech et optimisation du système pour la formation des futures promotions.</p>
+          <p class="project-desc">Conception et fabrication d'un drone à décollage vertical pour participer au <a href="https://www.dassault-aviation.tv/en/careers/2244/Dassault_UAV_Challenge_2024__5_SeaTech.html">Dassault UAV Challenge</a> avec l'association AeroTech. Un projet associatif complet combinant aérodynamique et systèmes embarqués. Gestion globale du projet en tant que président d'AeroTech et optimisation du système pour la formation des futures promotions.</p>
           <div class="project-tags"><span class="tag">---</span><span class="tag">---</span><span class="tag">---</span></div>
         </div>
         <a href="#" class="project-link">Voir<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 13L13 3M13 3H6M13 3V10"/></svg></a>
       </div>
+
       <div class="project-item">
         <span class="project-num">04</span>
         <div class="project-body">
-          <div class="project-meta">
-            <span class="project-category">---</span>
-            <span class="project-sep">—</span>
-            <span class="project-period">2025</span>
-            <span class="project-sep">|</span>
-            <span class="project-context">Scolaire</span>
-          </div>
+          <div class="project-meta"><span class="project-category">---</span><span class="project-sep">—</span><span class="project-period">2025</span><span class="project-sep">|</span><span class="project-context">Scolaire</span></div>
           <h3 class="project-title">Conception d'un système de contrôle de balle pour la RoboClub</h3>
-          <p class="project-desc">Projet de fin de deuxième année d’école d’ingénieur réalisé à 3 personnes pour le <a href="https://rct.univ-tln.fr/">Robot Club Toulonnais</a> autour d'un système de contrôle de balle biomimétique dans le cadre de la RoboCup.<br>
-            Conception de la feuille blanche jusqu'au choix des actionneurs. Étude biomimétique, dimensionnement des actionneurs et modélisation CAO détaillée sur SolidWorks pour simuler une jambe robotisée capable d'interagir avec un ballon</p>
+          <p class="project-desc">Projet de fin de deuxième année d'école d'ingénieur réalisé à 3 personnes pour le <a href="https://rct.univ-tln.fr/">Robot Club Toulonnais</a> autour d'un système de contrôle de balle biomimétique dans le cadre de la RoboCup.<br>Conception de la feuille blanche jusqu'au choix des actionneurs. Étude biomimétique, dimensionnement des actionneurs et modélisation CAO détaillée sur SolidWorks pour simuler une jambe robotisée capable d'interagir avec un ballon.</p>
           <div class="project-tags"><span class="tag">---</span><span class="tag">---</span><span class="tag">---</span></div>
         </div>
         <a href="#" class="project-link">Voir<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 13L13 3M13 3H6M13 3V10"/></svg></a>
       </div>
+
       <div class="project-item">
-        <span class="project-num">05<br><br><br><B>En<br>cours</B></span>
+        <span class="project-num">05<br><br><br><b>En<br>cours</b></span>
         <div class="project-body">
-          <div class="project-meta">
-            <span class="project-category">---</span>
-            <span class="project-sep">—</span>
-            <span class="project-period">2025-2026</span>
-            <span class="project-sep">|</span>
-            <span class="project-context">Personnel</span>
-          </div>
-          <h3 class="project-title">Rétroconception d’un moteur miniature</h3>
-          <p class="project-desc">Reproduction complète d’un moteur miniature à assembler à travers la modélisation individuelle de chaque composant sur CATIA V5.<br>
-            Projet combinant CAO, compréhension mécanique et validation par assemblage réel et numérique.</p>
+          <div class="project-meta"><span class="project-category">---</span><span class="project-sep">—</span><span class="project-period">2025-2026</span><span class="project-sep">|</span><span class="project-context">Personnel</span></div>
+          <h3 class="project-title">Rétroconception d'un moteur miniature</h3>
+          <p class="project-desc">Reproduction complète d'un moteur miniature à assembler à travers la modélisation individuelle de chaque composant sur CATIA V5.<br>Projet combinant CAO, compréhension mécanique et validation par assemblage réel et numérique.</p>
           <div class="project-tags"><span class="tag">---</span><span class="tag">---</span><span class="tag">---</span></div>
         </div>
         <a href="#" class="project-link">Voir<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 13L13 3M13 3H6M13 3V10"/></svg></a>
       </div>
+
       <div class="project-item">
         <span class="project-num">06</span>
         <div class="project-body">
-          <div class="project-meta">
-            <span class="project-category">---</span>
-            <span class="project-sep">—</span>
-            <span class="project-period">2026</span>
-            <span class="project-sep">|</span>
-            <span class="project-context">Scolaire</span>
-          </div>
-          <h3 class="project-title">Développement d’un robot sous-marin autonome reconfigurable</h3>
-          <p class="project-desc">Projet de fin de troisième année d’école d’ingénieur réalisé à 3 personnes autour du robot sous-marin PlaSMAR.<br>
-          Conception mécanique du système de transmission du robot, avec étude et dimensionnement de la transmission magnétique pour l’orientation des propulseurs, création d'une architecture interne et intégration électronique des différents composants.</p>
+          <div class="project-meta"><span class="project-category">---</span><span class="project-sep">—</span><span class="project-period">2026</span><span class="project-sep">|</span><span class="project-context">Scolaire</span></div>
+          <h3 class="project-title">Développement d'un robot sous-marin autonome reconfigurable</h3>
+          <p class="project-desc">Projet de fin de troisième année d'école d'ingénieur réalisé à 3 personnes autour du robot sous-marin PlaSMAR.<br>Conception mécanique du système de transmission du robot, avec étude et dimensionnement de la transmission magnétique pour l'orientation des propulseurs, création d'une architecture interne et intégration électronique des différents composants.</p>
           <div class="project-tags"><span class="tag">---</span><span class="tag">---</span><span class="tag">---</span></div>
         </div>
         <a href="#" class="project-link">Voir<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 13L13 3M13 3H6M13 3V10"/></svg></a>
       </div>
+
       <div class="project-item">
-        <span class="project-num">07<br><br><br><B>En<br>cours</B></span>
+        <span class="project-num">07<br><br><br><b>En<br>cours</b></span>
         <div class="project-body">
-          <div class="project-meta">
-            <span class="project-category">---</span>
-            <span class="project-sep">—</span>
-            <span class="project-period">2026</span>
-            <span class="project-sep">|</span>
-            <span class="project-context">Personnel</span>
-          </div>
-          <h3 class="project-title">Développement d’une plateforme robotique sur Raspberry Pi</h3>
-          <p class="project-desc">Projet basé sur un Adeept PiCar Pro équipé d’une Raspberry Pi 4B.<br>
-            Assemblage matériel puis développement en C++ et Python afin d’expérimenter différents capteurs, actionneurs et modes de contrôle : clavier, manette, interface personnalisée, pilotage autonome, ...</p>
+          <div class="project-meta"><span class="project-category">---</span><span class="project-sep">—</span><span class="project-period">2026</span><span class="project-sep">|</span><span class="project-context">Personnel</span></div>
+          <h3 class="project-title">Développement d'une plateforme robotique sur Raspberry Pi</h3>
+          <p class="project-desc">Projet basé sur un Adeept PiCar Pro équipé d'une Raspberry Pi 4B.<br>Assemblage matériel puis développement en C++ et Python afin d'expérimenter différents capteurs, actionneurs et modes de contrôle : clavier, manette, interface personnalisée, pilotage autonome, ...</p>
           <div class="project-tags"><span class="tag">---</span><span class="tag">---</span><span class="tag">---</span></div>
         </div>
         <a href="#" class="project-link">Voir<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 13L13 3M13 3H6M13 3V10"/></svg></a>
       </div>
     </div>
   </section>
- 
-<!-- HACKATHONS -->
-<section id="hackathons" style="border-top: 1px solid var(--border);">
-  <p class="section-label">Hackathons</p>
-  <div class="hackathon-grid">
- 
-    <div class="hackathon-item">
-      <div class="hackathon-num">01</div>
-      <div>
-        <p class="hackathon-meta">15-16/11/2024 &nbsp;·&nbsp; — Durée : 24h</p>
-        <h3 class="hackathon-title">24H Pour Créer</h3>
-        <p class="hackathon-desc">Hackathon national organisé par Bpifrance et Pépite France dans le but de créer des équipes pluridisciplinaires afin d'imaginer, de développer et de présenter un projet de création d’entreprise innovant et à impact, accompagnées de coachs, d’experts et d’entrepreneurs</p>
-        <span class="hackathon-desc">En équipe de 5 étudiants, nous avons conçu un organisme de lutte contre la pollution lumineuse, proposant des audits auprès d’entreprises et de collectivités, des alternatives en partenariat avec des acteurs spécialisés, ainsi que des actions de labellisation et de formation RSE.</span>
-      </div>
+
+  <!-- ── HACKATHONS ③⑤ ── -->
+  <div id="hackathons">
+    <div class="hackathon-header">
+      <span class="hackathon-eyebrow">Expériences</span>
+      <h2 class="hackathon-section-title">Hackathons</h2>
     </div>
- 
-    <div class="hackathon-item">
-      <div class="hackathon-num">02</div>
-      <div>
-        <p class="hackathon-meta">17-19/10/2025 &nbsp;·&nbsp; — Durée : 48h</p>
-        <h3 class="hackathon-title">Ocean Hackathon</h3>
-        <p class="hackathon-desc">Hackathon international organisé par le Campus mondial de la mer dans le but de de créer des équipes pluridisciplinaires afin de développer des prototypes innovant à partir de données marines pour répondre à des défis liés à l’océan proposés par des porteurs de projets.</p>
-        <p class="hackathon-desc">En équipe de 5 étudiants, sur un projet proposé par la DGA, nous avons développé un algorithme et une plateforme de simulation permettant de tester différentes configurations pour retrouver un objet en mer dans une zone donnée, en déployant des drones aériens et marins depuis un bateau.</p>
+    <div class="hackathon-grid">
+
+      <div class="hackathon-item">
+        <span class="hackathon-num">01</span>
+        <div>
+          <h3 class="hackathon-title">24H Pour Créer</h3>
+          <!-- Contexte = présentation du hackathon -->
+          <div class="hackathon-context">
+            <p class="hackathon-context-label">Présentation</p>
+            <p class="hackathon-meta">15-16/11/2024 &nbsp;·&nbsp; — Durée : 24h</p>
+            <p>Hackathon national organisé par Bpifrance et Pépite France dans le but de créer des équipes pluridisciplinaires afin d'imaginer, de développer et de présenter un projet de création d’entreprise innovant et à impact, accompagnées de coachs, d’experts et d’entrepreneurs.</p>
+          </div>
+          <!-- Travail réalisé -->
+          <div class="hackathon-work">
+            <p class="hackathon-work-label">Travail réalisé</p>
+            <p>En équipe de 5 étudiants, nous avons conçu un organisme de lutte contre la pollution lumineuse, proposant des audits auprès d’entreprises et de collectivités, des alternatives en partenariat avec des acteurs spécialisés, ainsi que des actions de labellisation et de formation RSE.</p>
+          </div>
+        </div>
       </div>
+
+      <div class="hackathon-item">
+        <span class="hackathon-num">02</span>
+        <div>
+          <h3 class="hackathon-title">Ocean Hackathon</h3>
+          <!-- Contexte -->
+          <div class="hackathon-context">
+            <p class="hackathon-context-label">Présentation</p>
+            <p class="hackathon-meta">17-19/10/2025 &nbsp;·&nbsp; — Durée : 48h</p>
+            <p>Hackathon international organisé par le Campus mondial de la mer dans le but de de créer des équipes pluridisciplinaires afin de développer des prototypes innovant à partir de données marines pour répondre à des défis liés à l’océan proposés par des porteurs de projets.</p>
+          </div>
+          <!-- Travail réalisé -->
+          <div class="hackathon-work">
+            <p class="hackathon-work-label">Travail réalisé</p>
+            <p>En équipe de 5 étudiants, sur un projet proposé par la DGA, nous avons développé un algorithme et une plateforme de simulation permettant de tester différentes configurations pour retrouver un objet en mer dans une zone donnée, en déployant des drones aériens et marins depuis un bateau.</p>
+          </div>
+        </div>
+      </div>
+
     </div>
- 
   </div>
-</section>
- 
- <section id="skills">
+
+  <!-- ── COMPÉTENCES ④ ── -->
+  <section id="skills">
     <div class="section-wrap">
-      <div class="section-header">
-        <h2 class="section-title">Compétences</h2>
-      </div>
+      <div class="section-header"><h2 class="section-title">Compétences</h2></div>
       <div class="skills-grid">
+
         <div class="skill-block">
           <div class="skill-idx">01</div>
           <div class="skill-name">CAO</div>
           <div class="skill-bar-wrap"><div class="skill-bar" style="--pct:90%"></div></div>
-          <div class="skill-list">-Conception 3D de pièces et sous-ensembles<br>- Architecture mécanique de systèmes complexes<br>- Optimisation géométrique<br>- Prototypage et validation de concepts<br></div>
-          <div class="project-tags"><span class="tag">Catia V5</span><span class="tag">SolidWorks</span><span class="tag">Fusion 360</span><span class="tag">Abaqus</span></div>
+          <div class="skill-list">
+            — Conception 3D de pièces et sous-ensembles<br>
+            — Architecture mécanique de systèmes complexes<br>
+            — Optimisation géométrique<br>
+            — Prototypage et validation de concepts
+          </div>
+          <div class="skill-tags">
+            <span class="tag">Catia V5</span><span class="tag">SolidWorks</span><span class="tag">Fusion 360</span><span class="tag">Abaqus</span>
+          </div>
         </div>
+
         <div class="skill-block">
           <div class="skill-idx">02</div>
           <div class="skill-name">Programmation</div>
           <div class="skill-bar-wrap"><div class="skill-bar" style="--pct:90%"></div></div>
-          <div class="skill-list">- Développement d’algorithmes et outils techniques orientés systèmes embarqués<br>- Traitement et exploitation de données<br>- Automatisation et prototypage logiciel<br></div>
-          <div class="project-tags"><span class="tag">C++</span><span class="tag">Python</span><span class="tag">MatLab / Simulink</span><span class="tag">ROS 2</span></div>
+          <div class="skill-list">
+            — Développement d'algorithmes et outils techniques orientés systèmes embarqués<br>
+            — Traitement et exploitation de données<br>
+            — Automatisation et prototypage logiciel
+          </div>
+          <div class="skill-tags">
+            <span class="tag">C++</span><span class="tag">Python</span><span class="tag">MatLab / Simulink</span><span class="tag">ROS 2</span>
+          </div>
         </div>
+
         <div class="skill-block">
           <div class="skill-idx">03</div>
-          <div class="skill-name">Drones & systèmes autonomes</div>
+          <div class="skill-name">Drones &amp; systèmes autonomes</div>
           <div class="skill-bar-wrap"><div class="skill-bar" style="--pct:90%"></div></div>
-          <div class="skill-list">- Conception de plateformes UAV<br>- Mission planning & flight control<br>- Architecture drone<br>- Validation terrain<br></div>
-          <div class="project-tags"><span class="tag">QGroundControl</span><span class ="tag">Mission Planner</span><span class="tag">SpeedyBee</span><span class="tag">Pixhawk</span></div>
+          <div class="skill-list">
+            — Conception de plateformes UAV<br>
+            — Mission planning &amp; flight control<br>
+            — Architecture drone<br>
+            — Validation terrain
+          </div>
+          <div class="skill-tags">
+            <span class="tag">QGroundControl</span><span class="tag">Mission Planner</span><span class="tag">SpeedyBee</span><span class="tag">Pixhawk</span>
+          </div>
         </div>
+
         <div class="skill-block">
           <div class="skill-idx">04</div>
           <div class="skill-name">Automatisation industrielle</div>
           <div class="skill-bar-wrap"><div class="skill-bar" style="--pct:90%"></div></div>
-          <div class="skill-list">- Procédés automatisés<br>- Intégration système<br>- Interfaces homme–machine<br></div>
-          <div class="project-tags"><span class="tag">SQL</span><span class="tag">ADISRA (C#)</span><span class="tag">SIMATIC Manager</span></div>          
+          <div class="skill-list">
+            — Procédés automatisés<br>
+            — Intégration système<br>
+            — Interfaces homme–machine
+          </div>
+          <div class="skill-tags">
+            <span class="tag">SQL</span><span class="tag">ADISRA (C#)</span><span class="tag">SIMATIC Manager</span>
+          </div>
         </div>
+
       </div>
     </div>
   </section>
 
+  <!-- ── FOOTER ── -->
   <footer id="contact">
     <div class="footer-inner">
       <div class="footer-links">
-        <!-- Email → copy to clipboard -->
         <button class="footer-link" id="copy-email" title="Copier l'adresse email">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="2" y="4" width="20" height="16" rx="2"/>
-            <path d="M2 7l10 7 10-7"/>
-          </svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 7l10 7 10-7"/></svg>
           txominmateobisbau@gmail.com
         </button>
-        <!-- LinkedIn -->
         <a href="https://www.linkedin.com/in/txomin-bisbau-65312b252/" target="_blank" rel="noopener" class="footer-link">
-          <svg viewBox="0 0 24 24" fill="currentColor">
-            <path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14zM7.12 20.45H3.56V9h3.56v11.45z"/>
-          </svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14zM7.12 20.45H3.56V9h3.56v11.45z"/></svg>
           Txomin Bisbau
         </a>
       </div>
-      <!-- CV open modal -->
       <button class="footer-cv" id="open-cv">
         <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
         Voir CV
@@ -712,7 +553,7 @@
     </div>
   </footer>
 
-  <!-- ─── CV MODAL ─── -->
+  <!-- ── CV MODAL ── -->
   <div id="cv-modal" role="dialog" aria-modal="true" aria-label="CV Txomin Bisbau">
     <div id="cv-backdrop"></div>
     <div id="cv-panel">
@@ -720,15 +561,11 @@
         <span id="cv-label">CV — Txomin Bisbau</span>
         <div id="cv-actions">
           <a href="CV - Txomin BISBAU.pdf" download class="cv-btn cv-btn-dl">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M12 3v13M7 11l5 5 5-5"/><path d="M5 21h14"/>
-            </svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v13M7 11l5 5 5-5"/><path d="M5 21h14"/></svg>
             Télécharger
           </a>
           <button id="close-cv" aria-label="Fermer">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
-              <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
-            </svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
           </button>
         </div>
       </div>
@@ -739,7 +576,6 @@
   <div id="toast">Email copié ✓</div>
 
   <script>
-    // ── CV modal
     const CV_PATH = 'CV - Txomin BISBAU.pdf';
     const modal    = document.getElementById('cv-modal');
     const openBtn  = document.getElementById('open-cv');
@@ -747,61 +583,26 @@
     const backdrop = document.getElementById('cv-backdrop');
     const iframe   = document.getElementById('cv-iframe');
     const dlLink   = document.querySelector('.cv-btn-dl');
-
-    const openModal = () => {
-      if (!iframe.src || !iframe.src.endsWith('.pdf')) iframe.src = CV_PATH + '#toolbar=0';
-      dlLink.href = CV_PATH;
-      modal.classList.add('open');
-      document.body.style.overflow = 'hidden';
-    };
-    const closeModal = () => {
-      modal.classList.remove('open');
-      document.body.style.overflow = '';
-    };
+    const openModal = () => { if (!iframe.src || !iframe.src.endsWith('.pdf')) iframe.src = CV_PATH + '#toolbar=0'; dlLink.href = CV_PATH; modal.classList.add('open'); document.body.style.overflow = 'hidden'; };
+    const closeModal = () => { modal.classList.remove('open'); document.body.style.overflow = ''; };
     openBtn.addEventListener('click', openModal);
     closeBtn.addEventListener('click', closeModal);
     backdrop.addEventListener('click', closeModal);
     document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
 
-
     const copyBtn = document.getElementById('copy-email');
     const toast   = document.getElementById('toast');
     let toastTimer;
-    copyBtn.addEventListener('click', () => {
-      navigator.clipboard.writeText('txominmateobisbau@gmail.com').then(() => {
-        toast.classList.add('show');
-        clearTimeout(toastTimer);
-        toastTimer = setTimeout(() => toast.classList.remove('show'), 2200);
-      });
-    });
+    copyBtn.addEventListener('click', () => { navigator.clipboard.writeText('txominmateobisbau@gmail.com').then(() => { toast.classList.add('show'); clearTimeout(toastTimer); toastTimer = setTimeout(() => toast.classList.remove('show'), 2200); }); });
 
-    const dot  = document.getElementById('cd');
-    const ring = document.getElementById('cr');
+    const dot = document.getElementById('cd'), ring = document.getElementById('cr');
     let mx = 0, my = 0, rx = 0, ry = 0;
-    document.addEventListener('mousemove', e => {
-      mx = e.clientX; my = e.clientY;
-      dot.style.left = mx + 'px';
-      dot.style.top  = my + 'px';
-    });
-    (function animRing() {
-      rx += (mx - rx) * 0.11;
-      ry += (my - ry) * 0.11;
-      ring.style.left = rx + 'px';
-      ring.style.top  = ry + 'px';
-      requestAnimationFrame(animRing);
-    })();
+    document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; dot.style.left = mx+'px'; dot.style.top = my+'px'; });
+    (function animRing() { rx += (mx-rx)*.11; ry += (my-ry)*.11; ring.style.left = rx+'px'; ring.style.top = ry+'px'; requestAnimationFrame(animRing); })();
 
-    const obs = new IntersectionObserver(entries => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          const delay = +(e.target.dataset.delay || 0) * 90;
-          setTimeout(() => e.target.classList.add('visible'), delay);
-          obs.unobserve(e.target);
-        }
-      });
-    }, { threshold: 0.12 });
-    document.querySelectorAll('.project-item').forEach((el, i) => { el.dataset.delay = i; obs.observe(el); });
-    document.querySelectorAll('.skill-block').forEach((el, i)   => { el.dataset.delay = i; obs.observe(el); });
+    const obs = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) { setTimeout(() => e.target.classList.add('visible'), +(e.target.dataset.delay||0)*90); obs.unobserve(e.target); } }); }, { threshold: 0.12 });
+    document.querySelectorAll('.project-item').forEach((el,i) => { el.dataset.delay=i; obs.observe(el); });
+    document.querySelectorAll('.skill-block').forEach((el,i) => { el.dataset.delay=i; obs.observe(el); });
   </script>
 </body>
 </html>
