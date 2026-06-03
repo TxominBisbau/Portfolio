@@ -326,6 +326,12 @@
       <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
         Txomin BISBAU
     </button>
+
+    <div class="lang-switch">
+      <button onclick="setLang('fr')">FR</button>
+      <button onclick="setLang('en')">EN</button>
+    </div>
+      
     <ul class="nav-links">
       <li><a href="#projects">Projets</a></li>
       <li><a href="#skills">Compétences</a></li>
@@ -342,7 +348,8 @@
           <!-- ① Nom en Fraunces, prénom en vert -->
           <h1 class="hero-name"><span class="first">Txomin</span> Bisbau</h1>
           <!-- ② Sous-titre juste après le nom -->
-          <p class="hero-subtitle">Ingénieur en Systèmes Mécatroniques &amp; Robotiques</p>
+          <p class="hero-subtitle" data-fr="Ingénieur en Systèmes Mécatroniques &amp; Robotiques"
+            data-en="Engineering student in mechatronic systems &amp; robotics"></p>
           <p class="hero-desc">Je conçois et développe des systèmes robotiques, des drones et des technologies embarquées, du concept jusqu’à l'expérimentation.</p>
         </div>
         <div class="hero-photo-wrap">
@@ -624,5 +631,18 @@
     document.querySelectorAll('.project-item').forEach((el,i) => { el.dataset.delay=i; obs.observe(el); });
     document.querySelectorAll('.skill-block').forEach((el,i) => { el.dataset.delay=i; obs.observe(el); });
   </script>
+
+  <script>
+    function setLang(lang) {
+      document.querySelectorAll('[data-fr]').forEach(el => {
+        el.textContent = el.getAttribute(`data-${lang}`);
+      });
+    }
+    </script>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        setLang("fr");
+      });
+    </script>
 </body>
 </html>
