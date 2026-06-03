@@ -104,6 +104,20 @@
       margin-bottom: .55rem;
     }
     .hero-name .first { color: var(--accent); }
+    
+    .lang-switch button {
+      background: none;
+      border: none;
+      cursor: none;
+      font-size: 1.3rem;
+      padding: 0 .2rem;
+      opacity: 0.7;
+      transition: opacity .2s, transform .2s;
+    }
+    .lang-switch button:hover {
+      opacity: 1;
+      transform: scale(1.15);
+    }
 
     /* ② Sous-titre juste sous le nom */
     .hero-subtitle {
@@ -328,8 +342,8 @@
     </button>
 
     <div class="lang-switch">
-      <button onclick="setLang('fr')">FR</button>
-      <button onclick="setLang('en')">EN</button>
+      <button onclick="setLang('fr')" title="Français">🇫🇷</button>
+      <button onclick="setLang('en')" title="English">🇬🇧</button>
     </div>
       
     <ul class="nav-links">
