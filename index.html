@@ -644,7 +644,7 @@
     const CV_PATH_EN = 'CV (en)- Txomin BISBAU.pdf';
     let currentLang = 'fr';
     const modal    = document.getElementById('cv-modal');
-    const openBtn  = document.getElementById('open-cv');
+    const openBtns = document.querySelectorAll('#open-cv');    
     const closeBtn = document.getElementById('close-cv');
     const backdrop = document.getElementById('cv-backdrop');
     const iframe   = document.getElementById('cv-iframe');
@@ -657,7 +657,7 @@
       document.body.style.overflow = 'hidden';
     };
     const closeModal = () => { modal.classList.remove('open'); document.body.style.overflow = ''; };
-    openBtn.addEventListener('click', openModal);
+    openBtns.forEach(btn => btn.addEventListener('click', openModal));
     closeBtn.addEventListener('click', closeModal);
     backdrop.addEventListener('click', closeModal);
     document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
