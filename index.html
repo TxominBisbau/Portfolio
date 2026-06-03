@@ -640,14 +640,22 @@
   <div id="toast">Email copié ✓</div>
 
   <script>
-    const CV_PATH = 'CV - Txomin BISBAU.pdf';
+    const CV_PATH_FR = 'CV - Txomin BISBAU.pdf';
+    const CV_PATH_EN = 'CV (en)- Txomin BISBAU.pdf';
+    let currentLang = 'fr';
     const modal    = document.getElementById('cv-modal');
     const openBtn  = document.getElementById('open-cv');
     const closeBtn = document.getElementById('close-cv');
     const backdrop = document.getElementById('cv-backdrop');
     const iframe   = document.getElementById('cv-iframe');
     const dlLink   = document.querySelector('.cv-btn-dl');
-    const openModal = () => { if (!iframe.src || !iframe.src.endsWith('.pdf')) iframe.src = CV_PATH + '#toolbar=0'; dlLink.href = CV_PATH; modal.classList.add('open'); document.body.style.overflow = 'hidden'; };
+    const openModal = () => {
+      const path = currentLang === 'en' ? CV_PATH_EN : CV_PATH_FR;
+      iframe.src = path + '#toolbar=0';
+      dlLink.href = path;
+      modal.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    };
     const closeModal = () => { modal.classList.remove('open'); document.body.style.overflow = ''; };
     openBtn.addEventListener('click', openModal);
     closeBtn.addEventListener('click', closeModal);
@@ -671,6 +679,7 @@
 
   <script>
     function setLang(lang) {
+      currentLang = lang;
       document.querySelectorAll('[data-fr]').forEach(el => {
         el.innerHTML = el.getAttribute(`data-${lang}`);
       });
