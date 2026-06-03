@@ -641,7 +641,7 @@
   <script>
     function setLang(lang) {
       document.querySelectorAll('[data-fr]').forEach(el => {
-        el.textContent = el.getAttribute(`data-${lang}`);
+        el.innerHTML = el.getAttribute(`data-${lang}`);
       });
     }
     </script>
