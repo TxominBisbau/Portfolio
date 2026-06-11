@@ -390,6 +390,12 @@
       font-size: .85rem; color: var(--muted); line-height: 1.95;
     }
     #proj-body .proj-text .project-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+    #proj-body .proj-extra {
+      grid-column: 1 / -1;
+      border-top: 1px solid var(--border-strong);
+      padding-top: 2rem;
+      margin-top: .5rem;
+    }
     @media (max-width: 700px) {
       #proj-body { grid-template-columns: 1fr; }
     }
@@ -815,7 +821,7 @@
       const imgSrc = item.querySelector('.project-img')?.src || '';
       const imgAlt = item.querySelector('.project-img')?.alt || '';
     
-      projLabel.textContent = num ? `Projet ${num}` : 'Projet';
+      projLabel.innerHTML = num ? `<span style="font-family:var(--font-m);color:var(--accent)">${num}</span>&ensp;<span style="font-family:var(--font-d);font-weight:700;color:var(--text);font-size:.85rem;letter-spacing:-.01em">${title}</span>` : title;
       projBody.innerHTML = `
         ${imgSrc ? `<img src="${imgSrc}" alt="${imgAlt}">` : ''}
         <div class="proj-text">
