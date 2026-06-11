@@ -291,6 +291,7 @@
     .footer-link svg { width: 22px; height: 22px; flex-shrink: 0; }
     .footer-link:hover { color: var(--accent); }
     button.footer-link { background: none; border: none; padding: 0; font-family: inherit; font-size: inherit; cursor: none; }
+    button.project-link { background: none; border: none; padding: 0; font-family: inherit; font-size: inherit; cursor: none; }
     .footer-cv { display: inline-flex; align-items: center; gap: 8px; font-family: var(--font-m); font-size: .7rem; font-weight: 500; letter-spacing: .09em; text-transform: uppercase; color: var(--accent); background: none; border: none; cursor: none; padding: 0; position: relative; }
     .footer-cv::after { content: ''; position: absolute; bottom: -2px; left: 0; right: 0; height: 1px; background: var(--accent); transform-origin: left; transition: transform .25s; }
     .footer-cv:hover::after { transform: scaleX(0.35); }
@@ -345,7 +346,7 @@
     }
     #proj-panel {
       position: relative; z-index: 1;
-      width: min(860px, 92vw); max-height: 90vh;
+      width: min(1100px, 105vw); max-height: 105vh;
       background: var(--bg); border: 1px solid var(--border-strong);
       display: flex; flex-direction: column;
       transform: translateY(24px) scale(.97);
