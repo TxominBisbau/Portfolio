@@ -329,6 +329,69 @@
       .hackathon-item { grid-template-columns: 1fr; }
       .hackathon-num { display: none; }
     }
+
+    /* ── PROJECT MODAL ── */
+    #proj-modal {
+      position: fixed; inset: 0; z-index: 500;
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; pointer-events: none;
+      transition: opacity .3s ease;
+    }
+    #proj-modal.open { opacity: 1; pointer-events: all; }
+    #proj-backdrop {
+      position: absolute; inset: 0;
+      background: rgba(10,28,20,0.55);
+      backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+    }
+    #proj-panel {
+      position: relative; z-index: 1;
+      width: min(860px, 92vw); max-height: 90vh;
+      background: var(--bg); border: 1px solid var(--border-strong);
+      display: flex; flex-direction: column;
+      transform: translateY(24px) scale(.97);
+      transition: transform .35s cubic-bezier(.16,1,.3,1);
+      overflow: hidden;
+    }
+    #proj-modal.open #proj-panel { transform: none; }
+    #proj-toolbar {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1rem 1.5rem; border-bottom: 1px solid var(--border);
+      flex-shrink: 0;
+    }
+    #proj-label {
+      font-family: var(--font-m); font-size: .65rem;
+      color: var(--muted); letter-spacing: .1em; text-transform: uppercase;
+    }
+    #close-proj {
+      background: none; border: none; cursor: none; color: var(--muted);
+      padding: .3rem; display: flex; align-items: center;
+      justify-content: center; transition: color .2s;
+    }
+    #close-proj svg { width: 18px; height: 18px; }
+    #close-proj:hover { color: var(--text); }
+    #proj-body {
+      overflow-y: auto; padding: 2.5rem;
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 2rem; align-items: start;
+    }
+    #proj-body img {
+      width: 100%; aspect-ratio: 4/3;
+      object-fit: contain;
+      border: 1px solid var(--border-strong);
+    }
+    #proj-body .proj-text { display: flex; flex-direction: column; gap: 1rem; }
+    #proj-body .proj-text .project-meta { display: flex; align-items: center; gap: .6rem; flex-wrap: wrap; }
+    #proj-body .proj-text h3 {
+      font-family: var(--font-d); font-size: clamp(1.1rem,2.5vw,1.5rem);
+      font-weight: 400; letter-spacing: -.015em; line-height: 1.25;
+    }
+    #proj-body .proj-text p {
+      font-size: .85rem; color: var(--muted); line-height: 1.95;
+    }
+    #proj-body .proj-text .project-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+    @media (max-width: 700px) {
+      #proj-body { grid-template-columns: 1fr; }
+    }
   </style>
 </head>
 <body>
@@ -398,7 +461,7 @@
           <div class="project-tags"><span class="tag">Acoustique</span><span class="tag">Analyse fréquentielle</span><span class="tag">Instrumentation</span></div>
         </div>
         <img class="project-img" src="Projet_01.png" alt="Projet 01">
-        <a href="#" class="project-link" data-fr="Voir" data-en="View"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 13L13 3M13 3H6M13 3V10"/></svg></a>
+        <button class="project-link" data-fr="Voir" data-en="View" onclick="openProject(this)"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 13L13 3M13 3H6M13 3V10"/></svg></button>
       </div>
 
       <div class="project-item">
@@ -412,7 +475,7 @@
           <div class="project-tags"><span class="tag" data-fr="CAO" data-en="CAD"></span><span class="tag" data-fr="Hydrodynamique" data-en="Hydrodynamics"></span><span class="tag" data-fr="Dimensionnement" data-en="Sizing"></span></div>
         </div>
         <img class="project-img" src="Projet_02.png" alt="Projet 02">
-        <a href="#" class="project-link" data-fr="Voir" data-en="View"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 13L13 3M13 3H6M13 3V10"/></svg></a>
+        <button class="project-link" data-fr="Voir" data-en="View" onclick="openProject(this)"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 13L13 3M13 3H6M13 3V10"/></svg></button>
       </div>
 
       <div class="project-item">
@@ -426,7 +489,7 @@
           <div class="project-tags"><span class="tag" data-fr="Aéromodélisme" data-en="Aeromodelling"></span><span class="tag" data-fr="CAO" data-en="CAD"></span><span class="tag" data-fr="Contrôle de vol" data-en="Flight control"></span></div>
         </div>
         <img class="project-img" src="Projet_03.png" alt="Projet 03">
-        <a href="#" class="project-link" data-fr="Voir" data-en="View"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 13L13 3M13 3H6M13 3V10"/></svg></a>
+        <button class="project-link" data-fr="Voir" data-en="View" onclick="openProject(this)"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 13L13 3M13 3H6M13 3V10"/></svg></button>
       </div>
 
       <div class="project-item">
@@ -440,7 +503,7 @@
           <div class="project-tags"><span class="tag" data-fr="Biomimétisme" data-en="Biomimicry"></span><span class="tag" data-fr="CAO" data-en="CAD"></span><span class="tag" data-fr="Intégration de système" data-en="System integration"></span></div>
         </div>
         <img class="project-img" src="Projet_04.png" alt="Projet 04">
-        <a href="#" class="project-link" data-fr="Voir" data-en="View"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 13L13 3M13 3H6M13 3V10"/></svg></a>
+        <button class="project-link" data-fr="Voir" data-en="View" onclick="openProject(this)"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 13L13 3M13 3H6M13 3V10"/></svg></button>
       </div>
 
       <div class="project-item">
@@ -454,7 +517,7 @@
           <div class="project-tags"><span class="tag" data-fr="Mécanique moteur" data-en="Engine mechanics"></span><span class="tag" data-fr="Rétroconception" data-en="Reverse engineering"></span><span class="tag" data-fr="CAO" data-en="CAD"></span></div>
         </div>
         <img class="project-img" src="Projet_05.png" alt="Projet 05">
-        <a href="#" class="project-link" data-fr="Voir" data-en="View"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 13L13 3M13 3H6M13 3V10"/></svg></a>
+        <button class="project-link" data-fr="Voir" data-en="View" onclick="openProject(this)"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 13L13 3M13 3H6M13 3V10"/></svg></button>
       </div>
 
       <div class="project-item">
@@ -468,7 +531,7 @@
           <div class="project-tags"><span class="tag" data-fr="Électromagnétisme" data-en="Electromagnetism"></span><span class="tag" data-fr="CAO" data-en="CAD"></span><span class="tag" data-fr="Électronique" data-en="Electronics"></span></div>
         </div>
         <img class="project-img" src="Projet_06.png" alt="Projet 06">
-        <a href="#" class="project-link" data-fr="Voir" data-en="View"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 13L13 3M13 3H6M13 3V10"/></svg></a>
+        <button class="project-link" data-fr="Voir" data-en="View" onclick="openProject(this)"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 13L13 3M13 3H6M13 3V10"/></svg></button>
       </div>
 
       <div class="project-item">
@@ -482,7 +545,7 @@
           <div class="project-tags"><span class="tag" data-fr="Robotique embarquée" data-en="Embedded robotics"></span><span class="tag" data-fr="Contrôle" data-en="Control"></span><span class="tag">Raspberry Pi</span></div>
         </div>
         <img class="project-img" src="Projet_07.png" alt="Projet 07">
-        <a href="#" class="project-link" data-fr="Voir" data-en="View"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 13L13 3M13 3H6M13 3V10"/></svg></a>
+        <button class="project-link" data-fr="Voir" data-en="View" onclick="openProject(this)"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 13L13 3M13 3H6M13 3V10"/></svg></button>
       </div>
     </div>
   </section>
@@ -637,6 +700,20 @@
     </div>
   </div>
 
+  <!-- ── PROJECT MODAL ── -->
+  <div id="proj-modal" role="dialog" aria-modal="true">
+    <div id="proj-backdrop"></div>
+    <div id="proj-panel">
+      <div id="proj-toolbar">
+        <span id="proj-label"></span>
+        <button id="close-proj" aria-label="Fermer">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+      <div id="proj-body"></div>
+    </div>
+  </div>
+
   <div id="toast">Email copié ✓</div>
 
   <script>
@@ -684,11 +761,48 @@
         el.innerHTML = el.getAttribute(`data-${lang}`);
       });
     }
-    </script>
-    <script>
-      document.addEventListener("DOMContentLoaded", () => {
-        setLang("fr");
-      });
-    </script>
+  </script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      setLang("fr");
+    });
+  </script>
+  <script>
+    // ── PROJECT MODAL ──
+    const projModal    = document.getElementById('proj-modal');
+    const projBackdrop = document.getElementById('proj-backdrop');
+    const projLabel    = document.getElementById('proj-label');
+    const projBody     = document.getElementById('proj-body');
+    const closeProjBtn = document.getElementById('close-proj');
+    
+    function openProject(btn) {
+      const item   = btn.closest('.project-item');
+      const num    = item.querySelector('.project-num')?.innerText.replace(/\n.*/,'').trim() || '';
+      const title  = item.querySelector('.project-title')?.innerHTML || '';
+      const meta   = item.querySelector('.project-meta')?.outerHTML || '';
+      const desc   = item.querySelector('.project-desc')?.innerHTML || '';
+      const tags   = item.querySelector('.project-tags')?.outerHTML || '';
+      const imgSrc = item.querySelector('.project-img')?.src || '';
+      const imgAlt = item.querySelector('.project-img')?.alt || '';
+    
+      projLabel.textContent = num ? `Projet ${num}` : 'Projet';
+      projBody.innerHTML = `
+        ${imgSrc ? `<img src="${imgSrc}" alt="${imgAlt}">` : ''}
+        <div class="proj-text">
+          ${meta}
+          <h3>${title}</h3>
+          <p>${desc}</p>
+          ${tags}
+        </div>`;
+    
+      projModal.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+    
+    const closeProj = () => { projModal.classList.remove('open'); document.body.style.overflow = ''; };
+    closeProjBtn.addEventListener('click', closeProj);
+    projBackdrop.addEventListener('click', closeProj);
+    document.addEventListener('keydown', e => { if (e.key === 'Escape' && projModal.classList.contains('open')) closeProj(); });
+  </script>
 </body>
 </html>
