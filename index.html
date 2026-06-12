@@ -199,6 +199,14 @@
       filter: grayscale(10%);
       transition: filter .3s;
     }
+    .project-img.full-width {
+      width: 100%;
+      object-fit: contain;
+      border: 1px solid var(--border-strong);
+      position: relative; z-index: 1;
+      filter: grayscale(10%);
+      transition: filter .3s;
+    }
 .project-item:hover .project-img { filter: grayscale(0%); }
 @media (max-width: 900px) { .project-img { display: none; } }
 
@@ -471,7 +479,7 @@
             <img src="image_supplementaire.png" alt="...">
           </div>
         </div>
-        <img class="project-img" src="Projet_01.png" alt="Projet 01">
+        <img class="project-img full-width" src="Projet_01.png" alt="Projet 01">
         <button class="project-link" data-fr="Voir" data-en="View" onclick="openProject(this)"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 13L13 3M13 3H6M13 3V10"/></svg></button>
       </div>
 
